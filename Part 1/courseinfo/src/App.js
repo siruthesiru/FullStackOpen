@@ -5,8 +5,6 @@ const Header = (props) => (
 )
 
 const Part = (props) => {
-  // console.log(props)
-  
   return (
     <div>
       <p>
