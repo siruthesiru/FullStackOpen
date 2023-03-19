@@ -12,17 +12,20 @@ const Button = ( props ) => (
 )
 
 const StatisticLine = ( props ) => {
+  
   if( props.text === "Positive" ){
     return (
-      <div>
-        <p>{ props.text }: { props.count }% </p>
-      </div>
+        <tr>
+          <td>{ props.text }</td>
+          <td>{ props.count }%</td>
+        </tr>
     )
   }else{
     return (
-      <div>
-        <p>{ props.text }: { props.count } </p>
-      </div>
+        <tr>
+          <td>{ props.text }</td>
+          <td>{ props.count }</td>
+        </tr>
     )
   }
 }
@@ -36,14 +39,16 @@ const Statistics = ( props ) => {
     )
   }else{
     return (
-      <div>
-        <StatisticLine text={ props.stats[0].text } count={ props.stats[0].count }/>
-        <StatisticLine text={ props.stats[1].text } count={ props.stats[1].count }/>
-        <StatisticLine text={ props.stats[2].text } count={ props.stats[2].count }/>
-        <StatisticLine text={ props.stats[3].text } count={ props.stats[3].count }/>
-        <StatisticLine text={ props.stats[4].text } count={ props.stats[4].count }/>
-        <StatisticLine text={ props.stats[5].text } count={ props.stats[5].count }/>
-      </div>
+        <table>
+          <tbody>
+            <StatisticLine text={ props.stats[0].text } count={ props.stats[0].count }/>
+            <StatisticLine text={ props.stats[1].text } count={ props.stats[1].count }/>
+            <StatisticLine text={ props.stats[2].text } count={ props.stats[2].count }/>
+            <StatisticLine text={ props.stats[3].text } count={ props.stats[3].count }/>
+            <StatisticLine text={ props.stats[4].text } count={ props.stats[4].count.toFixed(1) }/>
+            <StatisticLine text={ props.stats[5].text } count={ props.stats[5].count.toFixed(1) }/>
+          </tbody>
+        </table>
     )
   }
 
