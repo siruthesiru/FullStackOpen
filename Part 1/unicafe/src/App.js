@@ -11,7 +11,7 @@ const Button = ( props ) => (
   </div>
 )
 
-const Stat = ( props ) => {
+const StatisticLine = ( props ) => {
   if( props.text === "Positive" ){
     return (
       <div>
@@ -27,7 +27,31 @@ const Stat = ( props ) => {
   }
 }
 
+const Statistics = ( props ) => {
+  if ( props.stats[3].count === 0 ) {
+    return (
+      <div>
+        <p>No feedback given.</p>
+      </div>
+    )
+  }else{
+    return (
+      <div>
+        <StatisticLine text={ props.stats[0].text } count={ props.stats[0].count }/>
+        <StatisticLine text={ props.stats[1].text } count={ props.stats[1].count }/>
+        <StatisticLine text={ props.stats[2].text } count={ props.stats[2].count }/>
+        <StatisticLine text={ props.stats[3].text } count={ props.stats[3].count }/>
+        <StatisticLine text={ props.stats[4].text } count={ props.stats[4].count }/>
+        <StatisticLine text={ props.stats[5].text } count={ props.stats[5].count }/>
+      </div>
+    )
+  }
+
+  
+}
+
 const App = () => {
+  
   const [ good, setGood ] = useState(0)
   const [ neutral, setNeutral ] = useState(0)
   const [ bad, setBad ] = useState(0)
@@ -78,6 +102,15 @@ const App = () => {
     updateOtherStats(scoreValues.bad, good)
   }
 
+  const stats = [
+    { text : "Good", count : good },
+    { text : "Neutral", count : neutral },
+    { text : "Bad", count : bad },
+    { text : "All", count: all },
+    { text : "Average", count: average },
+    { text : "Positive", count: positive }
+  ]
+
   return (
     <div>
       <h1>Give Feedback</h1>
@@ -88,12 +121,7 @@ const App = () => {
 
       <h1>Statistics</h1>
 
-      <Stat count={ good } text="Good" />
-      <Stat count={ neutral } text="Neutral" />
-      <Stat count={ bad } text="Bad" />
-      <Stat count={ all } text="All" />
-      <Stat count={ average } text="Average" />
-      <Stat count={ positive } text="Positive" />
+      <Statistics stats={ stats } />
     </div>
   )
 }
